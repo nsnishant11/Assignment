@@ -9,17 +9,27 @@ const SortArray = function(...array){
   const sortObjectArray = function(jsonObjects,prop){
     SortArray.call(this,jsonObjects);
     this._prop=prop;
+    // console.log(this.originalArray)
     this.getSortedArray = function(){
-      return this.originalArray.sort( (a,b)=>Number(a[_prop])-Number(b[_prop]));
+      return this.originalArray[0].sort( (a,b)=>{
+          if(Number(a[this._prop])<Number(b[this._prop])){
+              return -1;
+          }else if(Number(a[this._prop])===Number(b[this._prop])){
+              return 0;
+          }else{
+              return 1;
+          }
+      }
+      );
     }
    
   }
   const homes = [{
-    "h_id": "3",
+    "h_id": "6",
     "city": "Dallas",
     "state": "TX",
     "zip": "75201",
-    "price": "162500"
+    "price": "6662500"
   }, {
     "h_id": "4",
     "city": "Bevery Hills",
@@ -31,9 +41,10 @@ const SortArray = function(...array){
     "city": "New York",
     "state": "NY",
     "zip": "00010",
-    "price": "962500"
+    "price": "1234962500"
   }];
   sortObjectArray.prototype=Object.create(SortArray.prototype);
   const newObjs = new sortObjectArray(homes,"price");
-  console.log(newObjs.getSortedArray());
+ const newArray=newObjs.getSortedArray();
+ console.log(newArray)
   

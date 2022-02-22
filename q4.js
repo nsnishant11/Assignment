@@ -1,4 +1,4 @@
-const SortArray = function(...array){
+SortArray = function(...array){
     this.originalArray=array;
     this.getSortedArray = function(){
       return this.originalArray.sort();
@@ -6,7 +6,7 @@ const SortArray = function(...array){
     
   };
   
-  const sortObjectArray = function(jsonObjects,prop){
+sortObjectArray=function(jsonObjects,prop){
     SortArray.call(this,jsonObjects);
     this._prop=prop;
     // console.log(this.originalArray)
@@ -44,7 +44,6 @@ const SortArray = function(...array){
     "price": "1234962500"
   }];
   sortObjectArray.prototype=Object.create(SortArray.prototype);
-  const newObjs = new sortObjectArray(homes,"price");
+  const newObjs = new sortObjectArray(homes,"h_id");
  const newArray=newObjs.getSortedArray();
  console.log(newArray)
-  
